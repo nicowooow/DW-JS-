@@ -1,0 +1,8 @@
+.ball{
+    border-radius: 50%;
+    background-color: aqua;
+    height: 50px;
+    width: 50px;
+    transition: all 2s ease;
+
+}
