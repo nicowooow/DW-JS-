@@ -12,68 +12,18 @@
     <input type="text" name="passwd" id="passwd">
     <input type="submit" value="submit" id="boton">
     <p id="mensaje"></p>
-    <script>
-        let message = document.getElementById("mensaje");
-        let boton=document.querySelector("#boton");
-        let passwd = "secreto";
-        let intentos=0;
-        boton.addEventListener("click",()=>{
-        let passwd_ = document.getElementById("passwd").value;
-        if(intentos != 3 ){
-            if(passwd===passwd_){
-                message.textContent="Bienvenido a la pagina...";
-            }else if(passwd!==passwd_){
-                message.textContent=`Intento fallido numero ${intentos+1}`;
-                intentos++;
-            }else{
-                message.textContent="esperando contrasena...";
-            }
-        }else{
-            message.textContent=`Intento fallido mayor ${intentos} ,usaste todos los intentos que tenias`;
-            boton.disabled = true;
-        }
-    })
-    </script>
+    <script defer src="ejer1.js"></script>
 
     <h1>Ocultar foto</h1>
     <img src="https://i.pinimg.com/736x/60/8a/7d/608a7d2de0cf6898c3869b116c4231be.jpg" id="mort_random" alt="imagen random mort">
     <button id="boton_mort" style="display: none;">ohh no morttt</button>
-    <script>
-        let boton_mort=document.getElementById("boton_mort");
-        let mort_random=document.getElementById("mort_random");
-        boton_mort.addEventListener("click",()=>{
-            boton_mort.style.display="none";
-            mort_random.style.display="block";
-        });
-        mort_random.addEventListener("click",()=>{
-            boton_mort.style.display="block";
-            mort_random.style.display="none";
-            });
+    <script defer src="ejer2.js"></script>
 
-    </script>
 
     <h1> table de multiplicar</h1>
     <p>Muestra la tabla de multiplicar del 1 al 10 (necesitarás dos bucles for, anidados).En la primera fila y en la primera columna, se mostrarán los multiplicandos. Por ejemplo:</p>
     <div id="tabla_multiplicar"></div>
-    <script>
-        let tabla_multiplicar= document.getElementById("tabla_multiplicar");
-        let tabla_html="<table border='1' cellspacing='0' cellpadding='5'>";
-            tabla_html+="<tr><td>x</td>"
-        for(let i=1; i<=10;i++){
-            tabla_html+=`<td> ${i} </td>`;
-        }
-        
-        tabla_html+="</tr>";
-        for(let i=1; i<=10;i++){
-            tabla_html+=`<tr><td>${i}</td>`;
-            for(let j=1; j<=10;j++){
-                tabla_html+=`<td> ${i*j} </td>`;
-            }
-            tabla_html+="</tr>"
-        }
-        tabla_html+="</table>";
-        tabla_multiplicar.innerHTML=tabla_html;
-    </script>
+    <script defer src="ejer3.js"></script>
 
     <h1>Operador ternario</h1>
     <p>Sin usar la estructura if, encadenando operadores ternarios, muestra la calificación en función de una nota.      <br>
@@ -87,16 +37,8 @@ En caso de que la entrada sea incorrecta, se informará al usuario del error com
 
 <input type="text" id="ingresar_nota">
 <p id="mostrar_resultado"></p>
-<script>
-    let nota= document.getElementById("ingresar_nota").value;
-    let resultado= document.getElementById("mostrar_resultado");
+    <script defer src="ejer4.js"></script>
 
-    let nota_resultado=(nota<5)?"Suspenso":(nota>=5 && nota<7?"aprobado":(nota>=7 && nota<9?"notable":(nota>=9 && nota<=10?"Sobresaliente":"ehhh nose la verdad")));
-    
-
-    resultado.innerHTML = nota_resultado;
-
-</script>
 <h1>Imágenes en posición aleatoria</h1>
 <p>
 Sitúa 3 imágenes en la página web que cambien a una posición aleatoria cada vez que se pulsa un botón. <br>
@@ -123,33 +65,6 @@ Para que las imágenes no oculten el botón cuando se sitúen encima, puedes dar
         position: absolute;
     }
 </style>
-<script>
-function moverRandom() {
-  let tiempo = 0;
-
-  const intervalo = setInterval(() => {
-    function randomNum() {
-      return Math.random() * (window.innerWidth - 100);
-    }
-
-    let random1 = document.getElementById("random1");
-    let random2 = document.getElementById("random2");
-    let random3 = document.getElementById("random3");
-
-    random1.style.left = `${randomNum()}px`;
-    random1.style.top = `${randomNum()}px`;
-    random2.style.left = `${randomNum()}px`;
-    random2.style.top = `${randomNum()}px`;
-    random3.style.left = `${randomNum()}px`;
-    random3.style.top = `${randomNum()}px`;
-
-    tiempo++;
-    if (tiempo >= 10) {
-      clearInterval(intervalo); // Detiene el temporizador
-    }
-  }, 1000); // Cambia a 1500 si quieres 1.5 segundos
-}
-</script>
-
+    <script defer src="ejer5.js"></script>
 </body> 
 </html>

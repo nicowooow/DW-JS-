@@ -11,83 +11,25 @@
 <body>
     <input type="date" name="fecha" id="fecha1">
     <p id="salida1"></p>
-    <script>
-        let fechaa = document.getElementById("fecha1");
-        fechaa.addEventListener("change", function () {
-            const week_days = [ "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const monts = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-            let fecha = new Date(fechaa.value);
-            let day_fecha = fecha.getDate();
-            let month_fecha = fecha.getMonth() + 1; //esto es porque empieza del 0 al 11
-            document.getElementById("salida1").innerHTML = `el numero del dia es ${day_fecha} y el numero de mes es ${month_fecha}`;
-            document.getElementById("salida1").innerHTML += `<br> El ${day_fecha} de ${monts[month_fecha]} del ${fecha.getFullYear()} es ${week_days[fecha.getDay()]} `
-        })
-    </script>
+    <script defer src="ejer1.js"></script>
 
     <button onclick="temporizador()">Pulsame ...</button>
     <p id="salida2">Cronómetro por iniciar </p>
-    <script>
-        let boton_inicio;
-        function padZero(number) {
-    return number < 10 ? "0" + number : number;
-}
+    <script defer src="ejer2.js"></script>
 
-        function temporizador() {
-            let salida2 = document.getElementById("salida2");
-            if (boton_inicio == null) {
-                boton_inicio = Date.now();
-                salida2.textContent = "Cronómetro iniciado";
-            } else {
-                let boton_fin = Date.now();
-                let diferencia = boton_fin - boton_inicio;
-                let segundos = diferencia / 1000;
-                console.log(boton_inicio, "y", boton_fin)
-                salida2.textContent = "Cronómetro terminado en " + segundos + " segundos y en formato hora seria";
-
-                let hora = Math.floor(diferencia / 3600000);
-                let minutos = Math.floor((diferencia % 3600000) / 60000);
-                let segundos_exac = Math.floor((diferencia % 60000) / 1000);
-                salida2.textContent += ` ${padZero(hora)}:${padZero(minutos)}:${padZero(segundos_exac)}`;
-            }
-        }
-    </script>
 
     <h2>voy a invertir la el texto ...</h2>
     <input type="text" name="texto" id="cadena">
     <input type="button" value="revertir texto" onclick="revertirCadena()">
     <p id="salida3"></p>
-    <script>
-        let salida3 = document.getElementById("salida3");
-        function revertirCadena() {
-            let texto = document.getElementById("cadena").value;
-            // return reverse(texto);
-            let textoinvertido = texto.split("").reverse().join("");
-            salida3.innerHTML = textoinvertido;
-        }
-    </script>
+    <script defer src="ejer3.js"></script>
 
     <h2>Voy a quitar los caracteres repetidos</h2>
     <input type="text" name="texto" id="cadena2">
     <input type="button" value="quitar caracteres repetidos" onclick="quitar_caracteres_repetidos()">
     <p id="salida4"></p>
-    <script>
-        let salida4 = document.getElementById("salida4");
-        function quitar_caracteres_repetidos() {
-            let texto2 = document.getElementById("cadena2").value;
-            let array_caracteres = texto2.split("");
-            let texto_sin_repe = "";
-            array_caracteres.forEach(caracter => {
-                if (!texto_sin_repe.includes(caracter)) {
-                    texto_sin_repe += caracter;
-                }
+    <script defer src="ejer4.js"></script>
 
-            });
-            salida4.innerHTML = texto_sin_repe;
-
-        }
-
-
-    </script>
     <h2>Intercambio de caracteres</h2>
     <label for="palabra">palabra :
         <input type="text" id="palabra">
@@ -101,52 +43,14 @@
     <button onclick="swap();" >cambiamos xD</button>
     <p id="salida5"></p>
 
-    <script>
-        function swap() {
-        let salida5 = document.getElementById("salida5");
-        let input = document.getElementById("palabra");
-        let palabra = input.value;
-        let ini = parseInt(document.getElementById("num1").value);
-        let fin = parseInt(document.getElementById("num2").value);
-        
-                let array_pala = palabra.split('');
-                let palabratemp = "";
-                
-                let char1 = array_pala[parseInt(ini)]
-                let char2 = array_pala[parseInt(fin)]
-                array_pala[parseInt(ini)] = char2
-                array_pala[parseInt(fin)] = char1
-                array_pala.forEach(element => {
-                    palabratemp += element;
-                });
-                salida5.innerHTML = palabratemp;
+    <script defer src="ejer5.js"></script>
 
-            
-        }
-
-    </script>
 
 <h2>Desordenar texto</h2>
 <input type="text" id="texto_mess">
 <input type="button" value="Desordenar" onclick="mostrarMess()">
 <p id="salidaMess"></p>
-<script>
-function mess(text) {
-    let arr = text.split('');
-    for (let i = arr.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1)); // índice aleatorio desde 0 hasta i
-        // Intercambia arr[i] con arr[j]
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr.join('');
-}
-
-
-    function mostrarMess() {
-        let entrada = document.getElementById("texto_mess").value;
-        document.getElementById("salidaMess").textContent = mess(entrada);
-    }
-</script>
+    <script defer src="ejer6.js"></script>
 
 
 </body>
