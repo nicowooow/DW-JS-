@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizadores</title>
+    <script defer src="ejer1.js"></script>
+    <script defer src="ejer2.js"></script>
+
+</head>
+
+<body>
+    <div id="ejer1">
+        <h1>EJERCICIO 1 -> crear una alarma para el mismo dia</h1>
+        <form action="">
+            <label for="time_ejer1"> ingrese la hora de la alarma (HH:MM:SS:MS) :
+                <input type="time" step="0.1" name="time_ejer1" id="time_ejer1">
+                <!-- el step lo usamos para el salto que tome el input time, si ponemos uno nos permite modificar los segunos y si ponemos 0.1 nos permite modificar los milisegundo-->
+                <input type="button" value="Establecer alarma" id="set_alarm">
+            </label>
+            <p id="salida1"></p>
+        </form>
+    </div>
+    <div id="ejer2">
+        <h1>crear un semaforo con un boton</h1>
+        <section
+            style="height:270px; background-image: url(https://www.shutterstock.com/shutterstock/videos/1089004639/thumb/1.jpg?ip=x480); background-attachment: overflow;">
+            <section>
+                <img id="car_up" style="position: relative; left:0px;" src="https://cdn-icons-png.flaticon.com/512/2554/2554896.png" alt="" width="130">
+            </section>
+            <section>
+                <img id="car_down" style="position: relative; left:0px;" src="https://cdn-icons-png.flaticon.com/512/2554/2554896.png" alt="" width="130">
+            </section>
+        </section>
+        <input type="button" id="pause_up" value="↑" style="background-color: rgb(255, 0, 0);">
+        <input type="button" id="pause_down" value="↓" style="background-color: rgb(255, 0, 0);">
+        <input type="button" id="pause_both" value="↑↓" style="background-color: rgb(255, 0, 0);">
+        <style>
+            body{
+                margin: 0;
+            }
+            #ejer2>input[type="button"] {
+                padding: 10px;
+                width: 3.4rem;
+                height: 3rem;
+                border-radius: 50%;
+                font-size: 20px;
+                font-weight: bold;
+                border: 5px inset grey;
+                text-align: center;
+            }
+        </style>
+    </div>
+
+</body>
+
+</html>
