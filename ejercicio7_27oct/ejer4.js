@@ -11,8 +11,8 @@ function look_for_mines(row, column,num_rows,num_colm, positions) {
                 posi=i * num_colm + j // calculamos la posicion actual de array
                 //console.log("i: ",i,"j: ",j);
                 //console.log("posi: ",posi);
-                
-                if (i >= 0 && i<num_rows && j >= 0 &&j<num_colm )
+                // i<num_rows && &&j<num_colm
+                if (i >= 0 && j >= 0 )
                     //i tiene que ser mayor o igual a cero
                     //i tiene que ser menor al limite definido
                     //j  tiene que ser mayor o igual a cero

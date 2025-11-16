@@ -1,4 +1,4 @@
-/* FUNCIONES FLECAS */
+/* FUNCIONES FLECHAS */
 const sumar = (x,y)=>{return x+y }
 
 const  restar = (x,y)=>{return x-y}
