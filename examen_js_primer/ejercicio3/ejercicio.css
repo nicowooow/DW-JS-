@@ -1,0 +1,18 @@
+#section , img{border: 2px solid black;
+}
+img{
+    height: 200px;
+    width: 200px;
+}
+#section{
+    width: 30rem;
+    height: 80%;
+    background-color: aliceblue;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 60px;
+}
+
+#section div{
+
+}

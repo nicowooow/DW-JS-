@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manual Completo de JavaScript - Teoría y Ejemplos</title>
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f6f6fa; margin: 2em; color: #23253a;}
+h1,h2 { color: #712a2a; }
+h3 { color: #335a83;}
+.section {margin-bottom:2em;padding:1em;background:#fff;border-radius:6px;box-shadow:0 1px 4px #0001;}
+pre {background:#f0f0f5;padding:.5em;border-radius:4px;}
+code {font-family:"Fira Mono","Consolas",monospace;font-size:.97em;}
+ul {margin-bottom:1em;}
+.comment {color:#8a8888;font-style:italic;}
+</style>
+</head>
+<body>
+<h1>Manual Completo de JavaScript - Teoría y Ejemplos</h1>
+<p>Incluye: teoría, ejemplos, explicaciones y comentarios prácticos por apartado. Basado en el temario dww.es/js y manuales profesionales.</p>
+
+<section class="section">
+  <h2>1. Introducción y Fundamentos</h2>
+  <h3>¿Qué es JavaScript?</h3>
+  <p>Lenguaje interpretado y estándar de la web para crear comportamiento dinámico, validar formularios, manipular el DOM y trabajar con datos, tanto en frontend como en backend (Node.js).</p>
+  <h3>Insertar JS en tu página</h3>
+  <pre><code>
+    // Se ejecuta al cargarse en el navegador
+    &lt;script&gt;alert("Hola mundo");&lt;/script&gt;
+    // Mejor práctica: usar archivos externos
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+  </code></pre>
+  <h3>Variables y constantes</h3>
+  <pre><code>
+    let edad = 20;             // Variable modificable, recomendada en ES6+
+    const PI = 3.1416;         // Constante, su valor nunca cambia
+    var nombre = "Pepe";       // Variable con scope menos controlado (evitar en proyectos nuevos)
+    // Siempre usa let/const salvo casos avanzados
+  </code></pre>
+  <h3>Tipos de datos</h3>
+  <pre><code>
+    let cadena = "Hola";       // Texto (string)
+    let numero = 15;           // Número entero o decimal
+    let activo = true;         // Booleano
+    let nulo = null;           // Valor vacío intencional
+    let sinDefinir;            // Undefined, no inicializado
+    let frutas = ["manzana","pera","plátano"]; // Array
+    let persona = {nombre:"Ana",edad:21};      // Objeto con propiedades
+  </code></pre>
+  <h3>Operadores</h3>
+  <pre><code>
+    let suma = 7 + 5;        // Suma
+    let diferencia = 9 - 4;  // Resta
+    let producto = 3 * 4;    // Multiplicación
+    let division = 18 / 3;   // División
+    let resto = 7 % 2;       // Módulo: resto de la división
+    let resultado = x > 3 ? "Mayor" : "No mayor"; // Ternario : condicional corto
+
+    // Comparación
+    let igual = a == b;      // Igualdad de valor (no tipo)
+    let estricto = a === b;  // Igualdad de valor y tipo
+    let distinto = a !== b;  // Distinto valor o tipo
+
+    // Lógicos AND, OR, NOT
+    let ok = activo && edad > 18; // true si ambos se cumplen
+    let acceso = admin || invitado; // true si alguno se cumple
+    let negado = !activo; // invierte el valor booleano
+  </code></pre>
+  <!-- Estructuras de control -->
+  <h3>Estructuras de control</h3>
+  <pre><code>
+    // Condicional simple
+    if (edad < 18) {
+      console.log("Menor de edad");
+    } else {
+      console.log("Mayor de edad");
+    }
+    // Repite 5 veces
+    for (let i=0; i<5; i++) {
+      console.log(i); // Muestra 0-4
+    }
+    // Bucle while
+    let x = 0;
+    while (x < 3) {
+      console.log(x); x++;
+    }
+    // Estructura switch para opciones
+    switch(dia) {
+      case 1: console.log("Lunes"); break;
+      case 2: console.log("Martes"); break;
+      default: console.log("Otro día");
+    }
+  </code></pre>
+  <h3>Funciones</h3>
+  <pre><code>
+    // Función tradicional
+    function cuadrado(x) {
+      return x*x; // Devuelve el cuadrado del número
+    }
+    // Función flecha
+    const suma = (a, b) => a + b; // Más corta, misma función
+
+    // Parámetros, retorno y ámbito
+    function mostrar(msg) {
+      let secreto = "oculto"; // Variable solo accesible en esta función
+      return "Mensaje: " + msg;
+    }
+  </code></pre>
+  <h3>Arrays y métodos útiles</h3>
+  <pre><code>
+    let nums = [1,2,3,4,5];
+
+    nums.push(6); // Añade nuevo valor
+    nums.pop();   // Elimina el último
+    let dobles = nums.map(n => n*2); // Crea array nuevo con transformación
+    let pares = nums.filter(n => n%2==0); // Crea array nuevo solo con pares
+    let sumaTotal = nums.reduce((acum,n)=>acum+n,0); // Suma todos los valores
+    /*
+      map: transforma todos los elementos
+      filter: selecciona solo los elementos que cumplen una condición
+      reduce: "acumula" todos los valores a uno solo (contador, suma, etc.)
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+<h2>2. Eventos y Temporizadores</h2>
+<h3>Eventos en JS</h3>
+<pre><code>
+const btn = document.getElementById("boton");
+btn.addEventListener("click", function() {
+  // Se ejecuta cada vez que el usuario hace clic en el botón
+  alert("¡Has hecho clic!");
+});
+
+// Otros eventos útiles:
+// input (cambio en campo de texto), mouseover (ratón encima), keydown (tecla pulsada), submit (formulario enviado)
+</code></pre>
+<h3>Timers y animaciones</h3>
+<pre><code>
+// Ejecuta una vez después de 1 seg
+setTimeout(() => {
+  console.log("Ha pasado 1 segundo");
+}, 1000);
+
+// Ejecuta cada segundo
+let intervalo = setInterval(() => {
+  console.log("Un tic más");
+}, 1000);
+
+// Detener intervalo después de 5s
+setTimeout(() => clearInterval(intervalo), 5000);
+
+// Animación con requestAnimationFrame
+function mueve() {
+  // Actualiza la posición aquí
+  requestAnimationFrame(mueve);
+}
+mueve();
+</code></pre>
+</section>
+
+<section class="section">
+<h2>3. BOM y DOM</h2>
+<h3>BOM (Browser Object Model)</h3>
+<pre><code>
+// Propiedades y métodos del navegador o ventana
+window.alert("Ventana de alerta");
+window.innerWidth;         // Anchura ventana
+navigator.userAgent;       // Info navegador
+location.reload();         // Recarga página
+</code></pre>
+<h3>DOM (Document Object Model)</h3>
+<pre><code>
+// Seleccionar elementos
+const p = document.getElementById("parrafo"); // por id
+const todos = document.querySelectorAll(".clase"); // por selector
+
+// Crear y modificar nodos
+const nuevo = document.createElement("div");
+nuevo.textContent = "¡Nuevo!";
+document.body.appendChild(nuevo); // Añade al final del body
+
+// Añadir/eliminar clases para estilos CSS
+nuevo.classList.add("importante"); // añade clase
+nuevo.classList.remove("importante"); // quita clase
+nuevo.classList.toggle("visible"); // alterna presencia clase
+</code></pre>
+</section>
+
+<section class="section">
+<h2>4. Expresiones Regulares</h2>
+<pre><code>
+// Validar email simple
+let re = /\w+@\w+\.\w{2,3}/;
+re.test("correo@dominio.com"); // true
+
+// Buscar solo números de 3 cifras seguidos de guión y cuatro cifras
+let tel = /\d{3}-\d{4}/;
+tel.test("522-9222"); // true
+
+/*
+  Los regex permiten comprobar formatos, buscar palabras, filtrar cadenas, etc.
+  Útil para formularios o procesar texto.
+*/
+</code></pre>
+</section>
+
+<section class="section">
+<h2>5. Módulos y Clases</h2>
+<h3>Módulos JS</h3>
+<pre><code>
+// modulo.js
+export function saluda() { return "Hola"; }
+// main.js
+import { saluda } from "./modulo.js";
+/*
+  Sirve para organizar el código en distintos archivos y reutilizar lógica y datos.
+*/
+</code></pre>
+<h3>Clases y Herencia</h3>
+<pre><code>
+class Animal {
+  constructor(nombre) { this.nombre = nombre;}
+  hablar() { console.log(this.nombre + " hace ruido"); }
+}
+// Extiende Animal (hereda métodos y propiedades)
+class Perro extends Animal {
+  hablar() { console.log(this.nombre + " ladra"); }
+}
+const rex = new Perro("Rex");
+rex.hablar(); // "Rex ladra"
+/*
+  Las clases permiten organizar lógica compleja y crear "plantillas" de objetos.
+*/
+</code></pre>
+</section>
+
+<section class="section">
+<h2>6. Objetos y JSON</h2>
+<pre><code>
+// Objeto literal
+let usuario = {nombre:"Pepe", edad:30, admin:true};
+
+// Conversión a JSON (texto para enviar o guardar)
+let str = JSON.stringify(usuario);
+// Volver a objeto desde texto JSON
+let user2 = JSON.parse(str);
+
+/*
+  JSON se usa para enviar datos en APIs, guardar en localStorage, intercambiar información entre front y back.
+*/
+</code></pre>
+</section>
+
+<section class="section">
+  <h2>7. Arrays Modernos y Métodos</h2>
+  <pre><code>
+    let valores = [2, 4, 8, 10];
+
+    // forEach: recorre cada elemento (no devuelve arreglo nuevo)
+    valores.forEach(v => console.log(v)); // Muestra cada uno en consola
+
+    // map: transforma cada elemento y devuelve un nuevo array
+    let cuadrados = valores.map(x => x * x); // [4, 16, 64, 100]
+
+    // filter: selecciona sólo los que pasan la condición
+    let pares = valores.filter(x => x % 2 === 0); // [2, 4, 8, 10]
+
+    // reduce: acumula los valores en uno solo (ejemplo suma)
+    let suma = valores.reduce((acum, x) => acum + x, 0); // 24
+
+    // find: devuelve el primer elemento que cumple la condición
+    let primeroMayor = valores.find(x => x > 5); // 8
+
+    // includes: verifica si contiene un elemento
+    valores.includes(8); // true
+
+    // sort: ordena el array, por defecto alfabético (transforma los valores)
+    valores.sort((a, b) => a - b); // [2, 4, 8, 10]
+    /*
+      Comentario: los métodos map/filter/reduce/sort permiten trabajar “funcionalmente”
+      y escribir código limpio, expresivo y potente para procesar arrays.
+      Los arrays son la estructura más usada en JS junto con objetos.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>8. Objetos Literales y Avanzados</h2>
+  <pre><code>
+    // Literal: básico y clave en JS
+    let persona = {
+      nombre: "Juan",
+      edad: 23,
+      admin: false,
+      saludar: function() {
+        return "Hola " + this.nombre;
+      }
+    };
+
+    // Acceso y modificación
+    persona.edad = 24; // Cambia la edad
+    delete persona.admin; // Elimina la propiedad admin
+    let claves = Object.keys(persona); // ['nombre', 'edad', 'saludar'], retorna sus claves
+
+    // Métodos avanzados: objetos anidados
+    let empresa = {
+      empleados: [
+        {nombre:"Ana", puesto:"Desarrolladora"},
+        {nombre:"Jose", puesto:"Analista"}
+      ],
+      datos: {direccion:"Calle A", año:2021}
+    };
+    /*
+      Comentario: los objetos permiten estructurar y agrupar datos, lógica y comportamiento.
+      Son la base de la POO y la organización del código JS moderno.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>9. JSON y Operaciones</h2>
+  <pre><code>
+    // Serializar: objeto a texto (string)
+    let personaJSON = JSON.stringify(persona);
+    // Parsear: texto a objeto
+    let objeto = JSON.parse(personaJSON);
+
+    // Uso real: envío y recepción de datos en APIs, almacenamiento local (localStorage/sessionStorage) y transmisión de datos
+    localStorage.setItem("usuario", personaJSON);
+    let usuarioLeido = JSON.parse(localStorage.getItem("usuario"));
+    /*
+      Comentario: el formato JSON es estándar para intercambio de datos
+      entre frontend y backend, y se usa en casi cualquier app moderna.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>10. Funciones Constructoras y Prototipos</h2>
+  <pre><code>
+    // Función constructora tradicional (antes de clases ES6)
+    function Animal(nombre, tipo) {
+      this.nombre = nombre;
+      this.tipo = tipo;
+    }
+    Animal.prototype.hablar = function() {
+      return this.nombre + " hace ruido";
+    };
+    let perro = new Animal("Rex", "perro");
+    perro.hablar(); // "Rex hace ruido"
+    /*
+      Comentario: así se generaban instancias y herencia clásica por prototipos
+      en JS “viejo”, clave para entender la POO moderna.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>11. Clases ES6+, Herencia y POO</h2>
+  <pre><code>
+    // Clase moderna y herencia
+    class Persona {
+      constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+      }
+      saludar() {
+        return `Hola, soy ${this.nombre}`;
+      }
+    }
+    class Empleado extends Persona {
+      constructor(nombre, edad, puesto) {
+        super(nombre, edad); // llama constructor padre
+        this.puesto = puesto;
+      }
+      trabajar() {
+        return `${this.nombre} trabaja como ${this.puesto}`;
+      }
+    }
+    let juan = new Empleado("Juan", 29, "Desarrollador");
+    juan.saludar(); // "Hola, soy Juan"
+    juan.trabajar(); // "Juan trabaja como Desarrollador"
+
+    // Encapsulamiento: métodos privados (convención _nombre), getters/setters
+    class Cuenta {
+      #saldo = 0; // propiedad privada, en JS moderno
+      get saldo() { return this.#saldo; }
+      depositar(cant) { this.#saldo += cant; }
+    }
+    let c = new Cuenta(); c.depositar(50); c.saldo; // 50
+    /*
+      Comentario: las clases y herencia permiten organizar lógica,
+      reutilizar código y modelar el mundo real en programación avanzada.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>12. Programación Asíncrona: Callbacks, Promesas, async/await, Fetch</h2>
+  <pre><code>
+    // Callback, primer paso asíncrono
+    setTimeout(()=>console.log("listo"),1000);
+
+    // Promesa básica
+    let prom = new Promise((res,rej)=> res("ok"));
+    prom.then(data => console.log(data)); // ok
+
+    // fetch y await
+    async function cargar() {
+      let r = await fetch("https://api");
+      let datos = await r.json(); // espera la conversión
+      return datos;
+    }
+
+    // Manejo de errores asíncronos
+    async function lee() {
+      try {
+        let r = await fetch("https://api/inexistente");
+        let datos = await r.json();
+      } catch(err) {
+        console.error("Error en petición", err);
+      }
+    }
+    /*
+      Comentario: la asincronía permite manejar tareas que tardan (peticiones, timers, operaciones externas)
+      evitando que se bloquee el navegador. Usar promesas y await es obligatorio en JS moderno.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>13. Eventos Avanzados y Manipulación Compleja del DOM</h2>
+  <pre><code>
+    // Delegación de eventos: escucha en padre, responde por hijos
+    document.body.addEventListener("click", evt => {
+      if (evt.target.matches(".btn")) {
+        alert("Botón pulsado: " + evt.target.textContent);
+      }
+    });
+
+    // Formulario: validar y manipular entrada
+    document.getElementById("formulario").addEventListener("submit", function(e){
+      e.preventDefault(); // evita que recargue la página
+      let valor = document.getElementById("nombre").value;
+      if (!valor.match(/^[A-Za-z]+$/)) {
+        alert("Solo letras!");
+      } else {
+        alert("Ok!");
+      }
+    });
+    /*
+      Comentario: la gestión avanzada del DOM/eventos permite apps interactivas,
+      formularios inteligentes y UX rica en frontend JS.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>14. Módulos, Imports/Exports y Microservicios</h2>
+  <pre><code>
+    // Módulo (ES6)
+    // archivo persona.js
+    export class Persona { ... }
+    export function crearPersona(nombre) { ... }
+    // archivo main.js
+    import { Persona, crearPersona } from "./persona.js";
+
+    // Microservicio básico Node.js
+    const express = require("express");
+    const app = express();
+    app.get("/api", (req, res) => res.json({saludo:"Hello"}));
+    app.listen(3000);
+
+    /*
+      Comentario: los módulos y microservicios permiten aplicaciones JS distribuidas,
+      seguras, organizadas y escalables tanto en frontend como en backend.
+    */
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>15. Ejercicios Prácticos Avanzados</h2>
+  <pre><code>
+    // Suma dos números de input y muestra en el DOM
+    function sumarInputs() {
+      let a = Number(document.getElementById("a").value);
+      let b = Number(document.getElementById("b").value);
+      document.getElementById("salida").textContent = a + b;
+    }
+
+    // Animar posición de una caja cada segundo
+    setInterval(()=>{
+      let caja = document.getElementById("animada");
+      caja.style.left = Math.random() * 300 + "px";
+      caja.style.top  = Math.random() * 200 + "px";
+    },1000);
+
+    // Validador de email con regex
+    function validarEmail(email) {
+      return /\w+@\w+\.\w{2,3}/.test(email);
+    }
+  </code></pre>
+</section>
+
+<section class="section">
+  <h2>16. Buenas Prácticas y Consejos Profesionales</h2>
+  <ul>
+    <li>Usa <code>let</code> y <code>const</code>, nunca <code>var</code> salvo en proyectos legacy</li>
+    <li>Nombres descriptivos y consistentes de variables y funciones</li>
+    <li>Divide en funciones/módulos pequeños y reutilizables</li>
+    <li>Valida todo input externo</li>
+    <li>No mezcles lógica, datos y presentación innecesariamente</li>
+    <li>Comenta tu código (pero no lo obvio); explica propósito</li>
+    <li>Maneja errores con <code>try/catch</code> y <code>.catch()</code>, nunca ignores fallos</li>
+    <li>Adapta el código pensando en mantenibilidad, seguridad (XSS, validaciones)</li>
+    <li>Lee documentación oficial, haz pequeños proyectos/ejercicios cada semana</li>
+    <li>Versiona tu código con Git/GitHub y haz pruebas regulares</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Manual generado por asistente AI, estructurado para estudio de JS moderno y profesional.</p>
+</footer>
+</body>
+</html>
