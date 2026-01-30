@@ -1,13 +1,19 @@
 let salida2 = document.getElementById("salida_ejer2");
-function programa(texto, letra) {
-console.log(texto,letra);
 
-  if (texto.length === 0) { // si no tiene longitud retorna 0
+function programa(texto, letra) {
+  console.log(texto, letra);
+
+  if (texto.length === 0) {
+    // si no tiene longitud retorna 0
     return 0;
   }
-    let letra_act = texto[0]; // saca la primera letra
+  let letra_act = texto[0]; // saca la primera letra
   let resto = texto.slice(1); // lo parte en el primer caracter y nos da los siguientes
-
+  
+  // console.log("texto -> ",texto);
+  // console.log("letra_act -> ",letra_act);
+  // console.log("resto -> ",resto);
+  
 
   if (letra_act == letra) {
     return 1 + programa(resto, letra); // si es igual entra otra vez a la funcion y suma 1

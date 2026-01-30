@@ -1,0 +1,9 @@
+* { font-size: 1.2rem; }
+i { color: #007; }
+
+#mundo img { 
+  filter: grayscale(100%); 
+  opacity: 50%; 
+  width: 200px;
+  padding: 5px;
+}

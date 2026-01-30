@@ -1,0 +1,40 @@
+#tapete{
+    background-color: rgb(18, 110, 18);
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 30px;
+    max-width: 800px;
+    padding: 20px 20px;
+    border-radius: 20px;
+}
+
+#tapete button {
+/* 1. Reset y Visualización */
+    display: inline-block; /* Crucial: Permite que varios "dados" se coloquen en fila */
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho/alto */
+
+    /* 2. Dimensiones y Centrado (El 'dado' es cuadrado/compacto) */
+    width: 60px; /* Ancho del dado */
+    height: 60px; /* Alto del dado (lo hace cuadrado) */
+    line-height: 60px; /* Centra el texto verticalmente dentro del bloque */
+    text-align: center;
+    margin: 5px; /* Espacio entre los dados */
+
+    /* 3. Estilo del Dado */
+    background-color: #ffffff; /* Fondo blanco (como un dado) */
+    color: #333333; /* Texto oscuro */
+    border: 1px solid #000000; /* Borde de dado tradicional */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    font-weight: bold;
+    font-size: 1.5em; /* Tamaño de la 'cara' o número */
+    
+    /* 4. Efectos 3D y Sombra */
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.1), /* Sombra interior suave (da volumen) */
+        3px 3px 5px rgba(0, 0, 0, 0.2); /* Sombra exterior */
+    
+    /* 5. Transición y Cursor */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+
+}
