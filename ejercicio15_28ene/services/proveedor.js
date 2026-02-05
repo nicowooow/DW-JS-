@@ -1,13 +1,8 @@
 import {proveedores} from './../BBDD_provicional/bbdd.js'
 class Proveedor{
-    dni
 
-    constructor(dni){
-        this.dni = dni
-    }
-
-    getProveedor(){
-        return proveedores.get(Number(this.dni))
+    getProveedor(dni){
+        return proveedores.get(Number(dni))
     }
 }
-export default Proveedor;
+export default new Proveedor;

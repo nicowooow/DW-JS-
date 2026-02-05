@@ -1,18 +1,14 @@
 import {clientes} from './../BBDD_provicional/bbdd.js'
 
 class Cliente{
-    dni
 
-    constructor(dni){
-        this.dni = dni
-    }
 
-    getCliente(){
-        console.log("cliente DNI==> ",this.dni);
+    getCliente(dni){
+        // console.log("cliente DNI==> ",dni);
         
-        return clientes.get(Number(this.dni))
+        return clientes.get(Number(dni))
     }
 
 }
 
-export default Cliente;
+export default new Cliente;

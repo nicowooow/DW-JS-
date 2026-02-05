@@ -1,44 +1,29 @@
-import Cliente from "../services/cliente.js";
-import Proveedor from "../services/proveedor.js";
+import { routeQuery, routeRest } from "../services/paths.js";
 
-export const controladorRest = (url) => {
-  let result = "";
-  let campos = url.match(/[^/].*/);
-  console.log(url);
-  //   console.log(campos);
-  let secciones = campos[0].split("/");
-  //   console.log(secciones);
 
-  let servicio = secciones[0];
-  let dni = secciones[1];
-  console.log("servicio ==> ",servicio," || dni ==> ", dni);
+export const controlador = (req, res) => {
+  let url = req.url;
+  console.log(" URL ==>  ", url);
+  let query = url.split("?");
+  // let result = "";// console.log("query ==>  ", query);// console.log(query[0].split("/")[1]);
 
-  switch (servicio) {
-    // como los dos servicos nos daran el mismo resultado lo ponemos de forma consecutiva
-    case "clientes":
+  switch (query[0].split("/")[1]) {
     case "proveedores":
-      if (servicio == "clientes") {
-        let cliente = new Cliente(dni);
-        result = cliente.getCliente();
-      } else if (servicio == "proveedores") {
-        let proveedor = new Proveedor(dni);
-        result = proveedor.getProveedor();
-      }
-      console.log("resultado ==> ",result);
-      
-      return JSON.stringify(result);
-
-
-    default:
-      return JSON.stringify({error:"servicio no encontrado"});
-
+      console.log("/proveedores");
+      if (query.length != 1) {res = routeQuery(query);}
+      else {res = routeRest(url);}
+      // console.log("res P ==> ", res);
+      break;
+    case "clientes":
+      console.log("/clientes");
+      if (query.length != 1) {res = routeQuery(query);}
+      else {res = routeRest(url);}
+      // console.log("res C ==> ", res);
+      break;
+    case "sumar":
+      console.log("/sumar");
+      break;
   }
 
-  return result;
+  return res;
 };
-
-
-export const controladorQuery = (query) =>{
-console.log(query);
-
-}
