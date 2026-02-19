@@ -10,6 +10,19 @@ export const Operaciones = (req, res) => {
   res.json({ operacion, x, y, result });
 };
 
+export const postForm = (req, res) => {
+  try {
+    let { x, y, operacion } = req.body;
+
+    let operaciones = { suma, resta, producto, cociente };
+
+    let result = operaciones[operacion](x, y);
+    res.json({ operacion, x, y, result });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const suma = (x, y) => {
   return Number(x) + Number(y);
 };

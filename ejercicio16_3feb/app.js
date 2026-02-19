@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { Operaciones } from "./controller/operaciones.controller.js";
+import { Operaciones,postForm } from "./controller/operaciones.controller.js";
 
 const app = express();
 app.use(cors());
@@ -12,5 +12,6 @@ app.get("/bienvenido", (req, res) => {
 });
 
 app.use("/:operacion/:x/:y", Operaciones);
+app.use("/post-form", postForm);
 
 export default app;

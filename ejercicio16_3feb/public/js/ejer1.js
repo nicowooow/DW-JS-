@@ -4,7 +4,6 @@ fetch("https://dog.ceo/api/breeds/image/random")
   .then((result) => result.json())
   .then((data) => {
     // console.log(data);
-
     img.src = data.message;
   });
 
@@ -51,3 +50,58 @@ fetch("http://127.2.2.7:3000/suma/5/7")
   .catch((error) => {
     console.error("Error en la cadena de fetch:", error);
   });
+////////////////////
+
+document.querySelector("#ejer4 form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  fetch("http://127.2.2.7:3000/post-form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ x: 5, y: 7, operacion: "suma" }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Resultado producto:", data);
+      return fetch("http://127.2.2.7:3000/post-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ x: data.result, y: 3, operacion: "producto" }),
+      });
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Resultado producto:", data);
+      return fetch("http://127.2.2.7:3000/post-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ x: data.result, y: 1, operacion: "resta" }),
+      });
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Resultado producto:", data);
+      return fetch("http://127.2.2.7:3000/post-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ x: data.result, y: 2, operacion: "cociente" }),
+      });
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("salida4").innerText =
+        `El resultado es ${data.result}`;
+    })
+
+    .catch((error) => {
+      console.error("Error en la cadena de fetch:", error);
+    });
+});
